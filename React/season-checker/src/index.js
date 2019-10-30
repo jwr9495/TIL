@@ -1,12 +1,47 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import Spinner from "./Spinner";
+import SeasonDisplay from "./SeasonDisplay";
+import Error from "./Error";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+class App extends Component {
+  state = {
+    lat: null,
+    errorMessage: ""
+  };
+
+  renderContent() {
+    const { lat, errorMessage } = this.state;
+
+    //사용자가 허용한 경우
+    if (lat && !errorMessage) {
+      return <SeasonDisplay lat={this.state.lat} />;
+    }
+
+    //사용자가 거부한 경우
+    if (errorMessage && !lat) {
+      return <Error />;
+    }
+
+    //사용자의 결정을 기다리는 중
+    return <Spinner message="Where are you?" />;
+  }
+
+  componentDidMount() {
+    window.navigator.geolocation.getCurrentPosition(
+      position => {
+        this.setState({ lat: position.coords.latitude });
+      },
+      error => {
+        this.setState({ errorMessage: error.message });
+      }
+    );
+  }
+
+  render() {
+    return <>{this.renderContent()}</>;
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
