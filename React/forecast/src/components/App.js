@@ -1,11 +1,35 @@
 import React, { useState, useEffect } from "react";
+/*
+import React, { Component } from 'react'
+
+export default class App extends Component {
+  state = { 
+    number : 0,
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.number}
+        <button onClick={() => {
+          this.setState({number:this.state.number+1})
+        }}> plus </button>
+      </div>
+    )
+  }
+}
+*/
+import Axios from "axios";
 import Current from "./Current";
 import Forecast from "./Forecast";
+import Spinner from "./Spinner";
+import "./App.css";
 
 const App = () => {
   const APPID = "7cdaaa5541fe9f12cd0da03dba7d179c";
   const [current, setcurrent] = useState(null);
   const [forecast, setforecast] = useState(null);
+  const [unit, setunit] = useState("c");
 
   const getLocation = () => {
     return new Promise((resolve, reject) => {
@@ -13,8 +37,22 @@ const App = () => {
     });
   };
 
-  const getTemp = async coords => {};
-  const getHourlyTemp = async coords => {};
+  const getTemp = async coords => {
+    const { latitude: lat, longitude: lon } = coords;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${APPID}&units=metric&lang=kr`;
+    const res = await Axios.get(url);
+    const { data } = res;
+    console.log(data);
+    setcurrent(data);
+  };
+  const getHourlyTemp = async coords => {
+    const { latitude: lat, longitude: lon } = coords;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&APPID=${APPID}&units=metric&lang=kr`;
+    const res = await Axios.get(url);
+    const { data } = res;
+    console.log(data);
+    setforecast(data);
+  };
 
   const getAll = async () => {
     try {
@@ -63,12 +101,18 @@ const App = () => {
       <h2>{number}</h2>
 */
     <>
-      <header>
+      <header className="header-padding">
         <h1>일기예보</h1>
       </header>
-      <main>
-        <Current />
-        <Forecast />
+      <main className="container">
+        {!current || !forecast ? (
+          <Spinner />
+        ) : (
+          <>
+            <Current current={current} unit={unit} setunit={setunit} />
+            <Forecast forecast={forecast} unit={unit} />
+          </>
+        )}
       </main>
     </>
   );
