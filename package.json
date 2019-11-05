@@ -1,0 +1,11 @@
+{
+  "name": "TIL",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jwr9495/TIL.git",
+  "author": "jwr9495 <skdlwn156@naver.com>",
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "^5.7.7"
+  }
+}
