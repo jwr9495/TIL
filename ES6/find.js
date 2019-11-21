@@ -1,15 +1,14 @@
-// Array에서만 사용 가능
-// ES5
+//ES5
 const users = [
-  { name: "jwr" },
-  { name: "jo" },
-  { name: "woo" },
-  { name: "ri" }
+  { name: "song" },
+  { name: "Tony", phone: "000" },
+  { name: "Hulk" },
+  { name: "Thor" },
+  { name: "Tony", phone: "001" }
 ];
-
 let user = null;
 for (var i = 0; i < users.length; i++) {
-  if (users[i].name === "jwr") {
+  if (users[i].name === "Tony") {
     user = users[i];
     break;
   }
@@ -17,28 +16,25 @@ for (var i = 0; i < users.length; i++) {
 
 // ES6
 user = users.find(user => {
-  return user.name === "jwr";
+  return user.name === "Tony";
 });
 
-// 실제로는 어떻게 쓰는가?
+//실제로는?
 const data = [
   { id: 1, name: "Tony" },
   { id: 2, name: "Hulk" },
   { id: 3, name: "Thor" },
-  { id: 4, name: "pepper" }
-];
-
-// DB에서 조회한 값
+  { id: 4, name: "Pepper" }
+]; //DB에서 조회한 값
 const whatWeWant = data.find(e => e.id === 3);
 
-// Practice1
+//실습1
 const products = [
   { name: "banana", type: "fruit" },
-  { name: "carrot", type: "vegetable" },
+  { name: "carrot", type: "채소" },
   { name: "apple", type: "fruit" },
-  { name: "pizza", type: "fastfood" },
-  { name: "onion", type: "vegetable" }
+  { name: "겨란", type: "유제품" },
+  { name: "yogurt", type: "유제품" }
 ];
-
-// name이 pizza인 것을 가져오기
-console.log(products.find(e => e.name === "pizza"));
+//프로덕트 중 이름이 겨란인 제품을 가져와주세요
+const product = products.find(e => e.name === "겨란");

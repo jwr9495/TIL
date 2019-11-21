@@ -1,5 +1,6 @@
 .contents {
-  font-size: 1.2rem; /* html 기본 사이즈 대비 1.2배 */
+  font-size: 1.2rem;
+  /* rem: html기본 사이즈 대비 1.2배 */
 }
 
 .weather {

@@ -1,3 +1,4 @@
+// async, await를 사용한 코드가 되도록 바꿔주세요!
 /*
 getCustomer(1, customer => {
   console.log("Customer: ", customer);
@@ -18,17 +19,10 @@ getCustomer(1, customer => {
     const topMovies = await getTopMovies();
     console.log("Top movies: ", topMovies);
     await sendEmail(customer.email, topMovies);
-    console.log("Email sent ....");
+    console.log("Email sent...");
   }
 })();
 
-function getCustomer(id) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({ id: 1, name: "Mosh Hamedani", isGold: true, email: "email" });
-    }, 2000);
-  });
-}
 /*
 function getCustomer(id, callback) {
   setTimeout(() => {
@@ -36,16 +30,20 @@ function getCustomer(id, callback) {
       id: 1,
       name: "Mosh Hamedani",
       isGold: true,
-      email: "email"
+      email: "email",
     });
   }, 4000);
 }
 */
-
-function getTopMovies() {
+function getCustomer(id) {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve(["movie1", "movie2"]);
+      resolve({
+        id: 1,
+        name: "Mosh Hamedani",
+        isGold: true,
+        email: "email",
+      });
     }, 2000);
   });
 }
@@ -56,11 +54,10 @@ function getTopMovies(callback) {
   }, 4000);
 }
 */
-
-function sendEmail(email, movies) {
+function getTopMovies() {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve();
+      resolve(["movie1", "movie2"]);
     }, 2000);
   });
 }
@@ -71,3 +68,10 @@ function sendEmail(email, movies, callback) {
   }, 4000);
 }
 */
+function sendEmail(email, movies) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve();
+    }, 2000);
+  });
+}

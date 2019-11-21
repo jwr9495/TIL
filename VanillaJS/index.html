@@ -35,18 +35,8 @@
       let number = 0;
       const counter = document.querySelector("#counter");
       const plusBtn = document.querySelector("#counter-plus-btn");
-      const minusBtn = document.querySelector("#counter-minus-btn");
-      const resetBtn = document.querySelector("#counter-reset-btn");
       plusBtn.addEventListener("click", function() {
         number++;
-        counter.innerHTML = number;
-      });
-      minusBtn.addEventListener("click", function() {
-        number--;
-        counter.innerHTML = number;
-      });
-      resetBtn.addEventListener("click", function() {
-        number = 0;
         counter.innerHTML = number;
       });
     </script>

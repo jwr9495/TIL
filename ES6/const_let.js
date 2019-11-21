@@ -1,12 +1,8 @@
-const name = "woori";
+const name = "binsan";
 
 const arr = {
-  name: "woori",
+  name: "binsan",
   gender: "male"
 };
 
-// arr = "a"; // Error
-
-arr.name = "Jo";
-
-console.log(arr);
+arr.name = "shin";

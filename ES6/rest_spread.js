@@ -8,11 +8,11 @@ const addAll = (...numbers) => {
   console.log(numbers);
   return numbers.reduce((acc, num) => (acc += num), 0);
 };
-
-console.log(addAll(1, 2, 3, 4, 5, 6, 7, 8));
+console.log(addAll(1, 2, 3, 4, 5, 6, 7));
 
 const defaultColors = ["red", "blue", "yellow"];
 const addedColors = ["orange", "green"];
+
 const sum = defaultColors.concat(addedColors);
 const es6sum = [...defaultColors, ...addedColors];
 const justsum = [defaultColors, addedColors];
@@ -23,11 +23,9 @@ console.log(justsum);
 function logging(a, b) {
   [a, b, ...rest] = arguments;
   console.log(rest);
-  //   console.log(arguments);
-  //   console.log(...arguments);
 }
 logging(1, 2, 3, 4);
 
-const sample = [340, 200, 1, 2, 3, 4, 5];
+const sample = [340, 200, 1, 2, 3, 4, 5, 6, 7];
 [, , ...whatIneed] = sample;
 console.log(whatIneed);

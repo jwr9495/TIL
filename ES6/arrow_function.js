@@ -1,31 +1,27 @@
-// ES5
+//ES5
 
 function add(a, b) {
   return a + b;
 }
 
-// ES6
-
+//ES6
 const multiply = (a, b) => {
   return a * b;
 };
-
-// 인자가 2개 이상부터는 괄호를 써줌
 const mul = (a, b) => a * b;
 
-// 인자가 하나이고 바로 return이면 다음과 같이 생략 가능
 const square = a => a * a;
+const logging = () => console.log("logging...");
 
-// 인자가 하나도 없으면 괄호를 써야함
-const logging = () => console.log("logging");
-
-// sayHello와 sayBye는 서로 같은 Format임
 const obj = {
-  name: "woori",
+  name: "binsan",
   sayHello: function() {
-    console.log("Hello");
+    console.log("Hello!");
   },
   sayBye() {
-    console.log("Bye");
+    console.log("Bye!");
   }
 };
+obj.name;
+obj.sayHello();
+obj.sayBye();

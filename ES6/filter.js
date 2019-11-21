@@ -1,10 +1,10 @@
-// ES5
+//ES5
 const products = [
   { name: "banana", type: "fruit" },
-  { name: "carrot", type: "vegetable" },
+  { name: "carrot", type: "채소" },
   { name: "apple", type: "fruit" },
-  { name: "pizza", type: "fastfood" },
-  { name: "onion", type: "vegetable" }
+  { name: "겨란", type: "유제품" },
+  { name: "yogurt", type: "유제품" }
 ];
 
 const fruits = [];
@@ -15,30 +15,38 @@ for (var i = 0; i < products.length; i++) {
 }
 
 // ES6
-const vegetable = products.filter(ele => {
-  return ele.type === "vegetable";
+const 유제품 = products.filter(element => {
+  return element.type === "유제품";
 });
+console.log(유제품);
 
-console.log(vegetable);
-
+// 실제로는?
 const comments = [
-  { id: 1, author: "woori", contents: "hi" },
-  { id: 2, author: "jo", contents: "ha" },
-  { id: 3, author: "jwr", contents: "ba" },
-  { id: 4, author: "cho", contents: "oh" }
+  { id: 1, author: "빈산", contents: "블라블라" },
+  { id: 2, author: "김신", contents: "겨란이 왔어요" },
+  { id: 3, author: "빈산", contents: "블라블라" },
+  { id: 4, author: "김신", contents: "이북에서 왔어요" }
 ];
+const 김신 = comments
+  .filter(comment => comment.author === "김신")
+  .map(e => e.contents);
 
-const woori = comments.filter(e => e.author === "woori");
-console.log(woori);
-
-// Practice
+//실습1
 const numbers = [1, 3, 5, 6, 10, 54, 25, 330, 220, 5];
-const filteredNumber = numbers.filter(e => 10 <= e && e <= 100);
-console.log(filteredNumber);
+// filter 10~100사이의 숫자만 뽑아 그결과를 보여주세요
+const result1 = numbers.filter(number => {
+  if (number > 10 && number < 100) return true;
+  return false;
+});
+const result2 = numbers.filter(
+  number => (number > 10 && number < 100 ? true : false)
+  // condition ? 참일경우 : 거짓일 경우
+);
+//실습 2
+//filter를 사용하셔서 reject함수를 만들어주세요
+//reject함수는 filter와 완전히 반대 작용을 하는 함수입니다.
 
-// Practice 2
-// filter를 이용하여 reject만들기(reject는 filter와 완전히 반대)
 function reject(arr, callback) {
   return arr.filter(e => !callback(e));
 }
-console.log("reject", reject(numbers, e => e > 10));
+//reject(number,number=>number>10); => [1,3,5,6];

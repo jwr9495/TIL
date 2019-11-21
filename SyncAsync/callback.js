@@ -1,37 +1,35 @@
-console.log("code start!");
-const user = getUser(1);
-/*  wish this form.. 
+console.log("코드 시작!");
 const user = getUser(1);
 const repo = getRepo(user);
-const commit = getCommits(repo);
+const commit = getCommit(repo);
 console.log(commit);
-    but ... callback form is that */
 
 // user를 찾아서, repo를 찾아서, commit을 찾고 싶어!
-const UserCallback = getUserCallback(1, user => {
-  console.log("find user ....");
+
+getUserCallback(1, user => {
+  console.log("유저를 찾고 있어요..");
   getRepo(user.githubID, repo => {
-    console.log("find repo ....");
+    console.log("레포를 찾고있어요...");
     getCommits(repo.commitID, commit => {
-      console.log("find commit ....");
+      console.log("커밋을 찾고있어요...");
       console.log(commit);
     });
-    //    console.log(repo);
   });
 });
 console.log(user);
-console.log("code end!");
-const users = [{ id: 1, githubID: "bing" }, { id: 2, githubID: "kim" }];
-
+console.log("코드 끝!");
+const users = [
+  { id: 1, githubID: "bing" },
+  { id: 2, githubID: "kim" },
+];
 function getUser(id) {
-  //DB connection find userID
+  //DB에 접속해서 유저를 찾는 함수
   let user;
   setTimeout(() => {
     user = users.find(user => user.id === id);
   }, 2000);
   return user;
 }
-
 function getUserCallback(id, callback) {
   setTimeout(() => {
     const user = users.find(user => user.id === id);
@@ -40,22 +38,25 @@ function getUserCallback(id, callback) {
 }
 function getRepo(githubID, callback) {
   const repos = [
-    { githubID: "bing", commitID: 1 },
-    { githubID: "kim", commitID: 2 }
+    { githubID: "bing", commitsID: 1 },
+    { githubID: "kim", commitsID: 2 },
   ];
   setTimeout(() => {
-    const repo = repos.find(repo => repo.githubID === githubID);
+    const repo = repos.find(
+      repo => repo.githubID === githubID,
+    );
     callback(repo);
   }, 2000);
 }
-
 function getCommits(commitID, callback) {
   const commits = [
-    { commitID: 1, contents: "hi" },
-    { commitID: 2, contents: "hi" }
+    { commitsID: 1, contents: "안녕하세요" },
+    { commitsID: 2, contents: "반갑습니다" },
   ];
   setTimeout(() => {
-    const commit = commits.find(commit => commit.commitID === commitID);
+    const commit = commits.find(
+      commit => commit.commitID === commitID,
+    );
     callback(commit);
   }, 2000);
 }

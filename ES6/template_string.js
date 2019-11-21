@@ -1,4 +1,4 @@
-const name = "Jo woo ri";
+const name = "Song Binsan";
 
 const string = "My name is " + name;
 

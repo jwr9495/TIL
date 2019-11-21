@@ -1,40 +1,42 @@
 //ES5
 const numbers = [10, 20, 30];
 let sum = 0;
-console.log("* ES5 for문 numbers 배열 계산 *");
+
 for (var i = 0; i < numbers.length; i++) {
   sum += numbers[i];
-
-  console.log("합계:", sum, "값:", numbers[i]);
+  //sum = sum + numbers[i];
 }
 
 //ES6
 sum = numbers.reduce((acc, number) => {
-  return acc + number;
+  return acc + number; // 0 + 10 => 10  + 20 => 30 + 30 => 60;
 }, 0);
-console.log("* ES6 for문 numbers 배열 계산 *");
-// {acc}: retrun value
+// 0 10 30 60
 
-let multiply = numbers.reduce((acc, number) => acc * number, 1);
-console.log(multiply);
-const strings = ["apple ", "is ", "good"];
+let multiply = numbers.reduce(
+  (acc, number) => acc * number,
+  1
+);
+
+const strings = ["apple", "is", "good"];
 
 const summed = strings.reduce((acc, str) => acc + str, "");
-console.log(summed);
 
 // map함수 구현하기
-let dNumber = numbers.map(e => e * 2);
+let dNumbers = numbers.map(e => e * 2);
 dNumbers = numbers.reduce((acc, number) => {
-  acc.push(number * 2); // return acc.push(number * 2); => undifind
+  acc.push(number * 2);
   return acc;
 }, []);
-console.log(dNumbers);
+// [10,20,30];
+// [] 10, [20] => [20] 20 [20, 40] => [20, 40] 30 [20, 40, 60] => [20,40,60] ;
 
-//실제로
+//실제로?
 /*
-올바르게 닫힌 괄호 : ((())), ()(), (), ((()()))
-올바르게 닫히지 않은 괄호 : ), )(())(, ()())
+ 올바르게 닫힌 괄호 : ((())), ()(), (), ((()()))
+ 올바르게 닫히지 않은 괄호 : ), )()()(, ()())
 */
+//'abc'.split('') => ['a','b','c'];
 function isGoodParens(string) {
   return !string.split("").reduce((acc, char) => {
     if (acc < 0) {
@@ -45,9 +47,9 @@ function isGoodParens(string) {
       --acc;
     }
     return acc;
-  }, 0); //'abc'.split('') => ['a', 'b', 'c']
+  }, 0);
 }
-// '()()' acc:0, char: ( => 1, ) => 0, ( => 1, ) => 0
+// '()()' acc:0 , char:( => 1, ) => 0 , ( => 1 , ) => 0
 console.log(isGoodParens(")("));
 console.log(isGoodParens("((((()()))))"));
 console.log(isGoodParens("()()())"));
@@ -59,27 +61,17 @@ const 참석자 = [
   { id: 4, type: "sitting" },
   { id: 5, type: "standing" }
 ];
-//reduce를 사용해서 서있는사람, 혹은 앉아있는 사람의 수를 출력
+//reduce를 사용해서 서있는사람, 혹은 앉아있는 사람의 수를 출력!
 const 서있는사람 = 참석자.reduce((acc, person) => {
   if (person.type === "standing") acc++;
   return acc;
 }, 0);
-// function sitting(참석자) {
-//   return !참석자.split("sitting").reduce((참석자, char) => {
-//     if (참석자 === "sitting") {
-//       return 참석자;
-//     } else if (참석자 === "standing") {
-//       --참석자;
-//     }
-//   }, []);
-// }
-console.log(서있는사람);
 
 //실습2
 //unique를 만들어봅시다.
 const samples = [10, 20, 30, 20, 40, 10, 50];
-//const result = unique(samples);
-//[10, 20, 30, 40, 50];
+// const result = unique(samples);
+// [10,20,30,40,50];
 function unique(arr) {
   //채워주세요!
   //reduce를 사용하구요

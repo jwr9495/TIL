@@ -11,8 +11,8 @@ function makeRequest2(url, method = "GET") {
   console.log(url, method);
 }
 makeRequest2("hello", "POST");
-makeRequest2("hello", "GET");
+makeRequest2("hello");
 
 //예시
 const sum = (a = 0, b = 0) => a + b;
-sum();
+sum(); //0

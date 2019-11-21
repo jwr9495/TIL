@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
+
 import SearchBar from "./components/SearchBar";
 import ProductTable from "./components/ProductTable";
 /*
@@ -40,7 +41,6 @@ const data = [
 */
 
 class App extends React.Component {
-  //state는 class형 component에만 선언해야함.
   state = {
     keyword: "",
     checked: false,
@@ -50,24 +50,25 @@ class App extends React.Component {
   async getData(url) {
     const res = await axios.get(url);
     const { data } = res;
-    data.sort(function(a, b) {
-      return a.category < b.category ? -1 : a.category > b.category ? 1 : 0;
-    });
-
     //const data = res.data;
+    data.sort((a, b) => {
+      if (a.category > b.category) return 1;
+      if (a.category < b.category) return -1;
+      return 0;
+    });
     this.setState({ data });
-    //this.setState({data: data});
+    //this.setState({data:data});
     console.log(data);
   }
 
   componentDidMount() {
-    //api
+    //API를 찔러서 데이를 가져오는 일을 할 겁니다.
     const url = "https://frozen-ocean-08299.herokuapp.com";
     this.getData(url);
   }
 
-  handleKeywordChange = keyword => {
-    this.setState({ keyword });
+  handleKeywordChange = word => {
+    this.setState({ keyword: word });
   };
   handleChecked = () => {
     this.setState({ checked: !this.state.checked });
